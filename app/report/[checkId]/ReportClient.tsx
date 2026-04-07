@@ -141,7 +141,7 @@ export default function ReportClient({ checkId }: { checkId: string }) {
 
   const grade = GRADE_CONFIG[data.overallGrade] || GRADE_CONFIG.F;
   const mainPlatformUrl = process.env.NEXT_PUBLIC_MAIN_PLATFORM_URL || "https://voice-ai-platform-phi.vercel.app";
-  const wizardUrl = `${mainPlatformUrl}/onboarding?checkId=${checkId}`;
+  const wizardUrl = `${mainPlatformUrl}/agents/new?checkId=${checkId}`;
 
   return (
     <div className="relative overflow-hidden">
@@ -366,7 +366,7 @@ export default function ReportClient({ checkId }: { checkId: string }) {
           </p>
           <a
             href={wizardUrl}
-            className="btn btn-secondary text-lg font-semibold inline-flex items-center gap-2"
+            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-lg font-semibold px-8 py-4 rounded-xl transition-colors"
           >
             Build My AI Agent
             <ArrowRight className="w-5 h-5" />

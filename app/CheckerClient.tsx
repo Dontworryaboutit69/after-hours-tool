@@ -602,7 +602,7 @@ export default function CheckerClient() {
                     Don&apos;t want to wait?
                   </p>
                   <a
-                    href={`${process.env.NEXT_PUBLIC_MAIN_PLATFORM_URL || "https://voice-ai-platform-phi.vercel.app"}/onboarding?checkId=${checkId}`}
+                    href={`${process.env.NEXT_PUBLIC_MAIN_PLATFORM_URL || "https://voice-ai-platform-phi.vercel.app"}/agents/new?checkId=${checkId}`}
                     className="btn btn-outline-primary text-sm px-6 py-2.5 inline-flex items-center gap-2"
                   >
                     Build your AI phone agent now

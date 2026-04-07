@@ -93,7 +93,7 @@ export async function GET(request: Request) {
         const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
         const mainPlatformUrl = process.env.MAIN_PLATFORM_URL || "https://voice-ai-platform-phi.vercel.app";
         const reportUrl = `${appUrl}/report/${check.id}`;
-        const wizardUrl = `${mainPlatformUrl}/onboarding?checkId=${check.id}`;
+        const wizardUrl = `${mainPlatformUrl}/agents/new?checkId=${check.id}`;
 
         const gradeColors: Record<string, string> = {
           A: "#10b981", B: "#3b82f6", C: "#f59e0b", D: "#f97316", F: "#ef4444",
