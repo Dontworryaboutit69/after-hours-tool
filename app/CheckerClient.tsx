@@ -213,35 +213,36 @@ export default function CheckerClient() {
   };
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative">
       {/* Warm ambient glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-[140px]" />
         <div className="absolute bottom-1/4 right-1/5 w-72 h-72 bg-primary/5 rounded-full blur-[120px]" />
       </div>
 
-      <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14 lg:py-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <div className="badge-glass-shine py-1 px-4 rounded-full bg-lighter text-sm font-medium backdrop-blur-3xl shadow-[0px_1px_0px_0px_#CEB69E] text-gray/80 inline-flex items-center gap-2 mb-6">
+          <div className="badge-glass-shine py-1 px-4 rounded-full bg-lighter text-sm font-medium backdrop-blur-3xl shadow-[0px_1px_0px_0px_#CEB69E] text-gray/80 inline-flex items-center gap-2 mb-4">
             <Phone className="w-4 h-4 text-primary" />
             Free Phone Coverage Check
           </div>
-          <h1 className="text-h2-sm md:text-h1 font-semibold leading-tight has-em">
+          <h1 className="text-h2-sm md:text-h2 lg:text-h1 font-semibold leading-tight has-em">
             Is Your Business{" "}
             <em>Losing Calls?</em>
           </h1>
-          <p className="text-text/60 text-lg mt-4 max-w-lg mx-auto leading-relaxed">
+          <p className="text-text/60 text-lg mt-3 max-w-xl mx-auto leading-relaxed">
             We call your business 5 times over 24 hours and show you exactly
             where customers are slipping through the cracks. Free report. No strings attached.
           </p>
         </motion.div>
 
+        <div className="max-w-xl mx-auto">
         <AnimatePresence mode="wait">
           {/* Phase 1: Google Business Search */}
           {phase === "search" && (
@@ -265,7 +266,7 @@ export default function CheckerClient() {
                   }}
                 />
               </div>
-              <p className="text-center text-text/30 text-sm mt-6">
+              <p className="text-center text-text/30 text-sm mt-4">
                 We pull your phone number, hours, and reviews from your Google Business Profile.
               </p>
             </motion.div>
@@ -472,9 +473,9 @@ export default function CheckerClient() {
               transition={{ duration: 0.4 }}
               className="text-center"
             >
-              <div className="rounded-3xl border border-zinc/90 bg-lighter corner-squircle p-10 card-shadow">
+              <div className="rounded-3xl border border-zinc/90 bg-lighter corner-squircle p-8 card-shadow">
                 {/* Animated phone pulse */}
-                <div className="relative w-24 h-24 mx-auto mb-8">
+                <div className="relative w-20 h-20 mx-auto mb-6">
                   <div className="absolute inset-0 rounded-full bg-primary/15 animate-ping" />
                   <div className="absolute inset-2 rounded-full bg-primary/20 animate-pulse" />
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -494,7 +495,7 @@ export default function CheckerClient() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="text-text-dark text-xl font-semibold mb-3"
+                    className="text-text-dark text-lg font-semibold mb-2"
                   >
                     {LOADING_STAGES[loadingStage]?.message || "Almost done..."}
                   </motion.p>
@@ -505,7 +506,7 @@ export default function CheckerClient() {
                 </p>
 
                 {/* Rotating stats */}
-                <div className="mt-8 rounded-lg bg-light border border-border/50 p-4">
+                <div className="mt-6 rounded-lg bg-light border border-border/50 p-3">
                   <AnimatePresence mode="wait">
                     <motion.p
                       key={statIndex}
@@ -532,11 +533,11 @@ export default function CheckerClient() {
               transition={{ duration: 0.4 }}
             >
               {/* Call 1 result */}
-              <div className="rounded-3xl border border-zinc/90 bg-lighter corner-squircle p-8 text-center mb-6 card-shadow">
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center bg-light">
+              <div className="rounded-2xl border border-zinc/90 bg-lighter corner-squircle p-6 text-center mb-4 card-shadow">
+                <div className="w-14 h-14 mx-auto mb-3 rounded-full flex items-center justify-center bg-light">
                   {(() => {
                     const Icon = getCall1Icon();
-                    return <Icon className={`w-8 h-8 ${getCall1Color()}`} />;
+                    return <Icon className={`w-7 h-7 ${getCall1Color()}`} />;
                   })()}
                 </div>
                 <p className={`text-2xl font-semibold ${getCall1Color()}`}>
@@ -548,7 +549,7 @@ export default function CheckerClient() {
               </div>
 
               {/* What's next */}
-              <div className="rounded-3xl border border-zinc/90 bg-lighter corner-squircle p-8 card-shadow">
+              <div className="rounded-2xl border border-zinc/90 bg-lighter corner-squircle p-6 card-shadow">
                 <h3 className="text-text-dark font-semibold text-lg mb-1">
                   4 more checks on the way
                 </h3>
@@ -612,6 +613,7 @@ export default function CheckerClient() {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </div>
     </div>
   );

@@ -6,13 +6,13 @@ export default function Home() {
       <CheckerClient />
 
       {/* SEO content — below the fold, visible to search engines */}
-      <section className="bg-lighter border-t border-border py-16 xl:py-20">
-        <div className="mx-auto xl:max-w-[1320px] px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-h3-sm md:text-h3 font-semibold text-text-dark mb-6 has-em">
+      <section className="bg-lighter border-t border-border py-12 lg:py-16">
+        <div className="mx-auto max-w-3xl lg:max-w-5xl px-4 sm:px-6">
+          <div className="max-w-3xl">
+            <h2 className="text-h3-sm md:text-h3 font-semibold text-text-dark mb-4 has-em">
               Why Every Local Business Needs a <em>Phone Coverage Check</em>
             </h2>
-            <div className="space-y-4 text-text/75 text-lg leading-relaxed">
+            <div className="space-y-3 text-text/75 text-base lg:text-lg leading-relaxed">
               <p>
                 If you run a service business — plumbing, roofing, dental, legal,
                 landscaping, HVAC, or anything that relies on phone leads — your
@@ -67,50 +67,48 @@ export default function Home() {
       </section>
 
       {/* How it works — SEO + trust */}
-      <section className="bg-body py-16 xl:py-20">
-        <div className="mx-auto xl:max-w-[1320px] px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-h3-sm md:text-h3 font-semibold text-text-dark mb-10 text-center has-em">
-              How It <em>Works</em>
-            </h2>
-            <div className="grid gap-8 md:grid-cols-3">
-              {[
-                {
-                  step: "1",
-                  title: "Find Your Business",
-                  desc: "Search for your Google Business Profile. We auto-fill your phone number, hours, and location.",
-                },
-                {
-                  step: "2",
-                  title: "We Call You 5 Times",
-                  desc: "Over 24 hours, we call at different times — before you open, during peak hours, and after you close.",
-                },
-                {
-                  step: "3",
-                  title: "Get Your Free Report",
-                  desc: "Full coverage score, call-by-call timeline, revenue impact, and review analysis — delivered to your inbox.",
-                },
-              ].map((item) => (
-                <div
-                  key={item.step}
-                  className="p-8 rounded-3xl border border-zinc/90 bg-lighter corner-squircle text-center"
-                >
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-dark text-text-light font-semibold text-lg mb-6 icon-shadow">
-                    {item.step}
-                  </div>
-                  <h3 className="text-xl font-semibold text-text-dark mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-text/70">{item.desc}</p>
+      <section className="bg-body py-12 lg:py-16">
+        <div className="mx-auto max-w-3xl lg:max-w-5xl px-4 sm:px-6">
+          <h2 className="text-h3-sm md:text-h3 font-semibold text-text-dark mb-8 text-center has-em">
+            How It <em>Works</em>
+          </h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                step: "1",
+                title: "Find Your Business",
+                desc: "Search your Google Business Profile. We auto-fill your phone number, hours, and location.",
+              },
+              {
+                step: "2",
+                title: "We Call You 5 Times",
+                desc: "Over 24 hours — before you open, during peak hours, and after you close.",
+              },
+              {
+                step: "3",
+                title: "Get Your Free Report",
+                desc: "Coverage score, call timeline, revenue impact, and review analysis in your inbox.",
+              },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="p-5 lg:p-6 rounded-2xl border border-zinc/90 bg-lighter corner-squircle text-center"
+              >
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-dark text-text-light font-semibold text-sm mb-4 icon-shadow">
+                  {item.step}
                 </div>
-              ))}
-            </div>
+                <h3 className="text-lg font-semibold text-text-dark mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-text/70 text-sm">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-dark text-text-light py-12">
+      <footer className="bg-dark text-text-light py-8">
         <div className="mx-auto xl:max-w-[1320px] px-4 text-center">
           <p className="text-text-light/40 text-sm">
             A free tool by{" "}
