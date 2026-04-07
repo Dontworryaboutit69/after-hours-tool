@@ -35,7 +35,7 @@ Write a 3-4 sentence analysis paragraph for their report. Be direct and specific
 
   try {
     const response = await anthropic.messages.create({
-      model: "claude-haiku-4-20250414",
+      model: "claude-sonnet-4-20250514",
       max_tokens: 300,
       messages: [{ role: "user", content: prompt }],
     });
