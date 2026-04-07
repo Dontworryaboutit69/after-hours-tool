@@ -116,30 +116,30 @@ export default function GoogleBusinessSearch({ onSelect, onClear, selected }: Pr
   if (selected) {
     return (
       <div className="relative">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-5">
+        <div className="rounded-2xl border border-zinc/90 bg-lighter p-5 card-shadow corner-squircle">
           <div className="flex items-start justify-between">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center flex-shrink-0">
-                <Building2 className="w-6 h-6 text-purple-400" />
+              <div className="w-12 h-12 rounded-xl bg-dark flex items-center justify-center flex-shrink-0 icon-shadow">
+                <Building2 className="w-6 h-6 text-text-light" />
               </div>
               <div>
-                <h3 className="text-white font-bold text-lg">{selected.name}</h3>
-                <p className="text-white/50 text-sm mt-0.5 flex items-center gap-1">
+                <h3 className="text-text-dark font-semibold text-lg">{selected.name}</h3>
+                <p className="text-text/45 text-sm mt-0.5 flex items-center gap-1">
                   <MapPin className="w-3.5 h-3.5" />
                   {selected.formatted_address}
                 </p>
                 <div className="flex items-center gap-4 mt-2">
                   {selected.rating && (
                     <span className="text-sm flex items-center gap-1">
-                      <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-                      <span className="text-white/70">{selected.rating}</span>
+                      <Star className="w-3.5 h-3.5 text-primary fill-primary" />
+                      <span className="text-text/70">{selected.rating}</span>
                       {selected.user_ratings_total && (
-                        <span className="text-white/40">({selected.user_ratings_total} reviews)</span>
+                        <span className="text-text/35">({selected.user_ratings_total} reviews)</span>
                       )}
                     </span>
                   )}
                   {selected.formatted_phone_number && (
-                    <span className="text-sm flex items-center gap-1 text-white/50">
+                    <span className="text-sm flex items-center gap-1 text-text/45">
                       <Phone className="w-3.5 h-3.5" />
                       {selected.formatted_phone_number}
                     </span>
@@ -147,8 +147,8 @@ export default function GoogleBusinessSearch({ onSelect, onClear, selected }: Pr
                 </div>
                 {selected.opening_hours?.weekday_text && (
                   <div className="mt-3 flex items-start gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-white/30 mt-0.5 flex-shrink-0" />
-                    <div className="text-xs text-white/40 space-y-0.5">
+                    <Clock className="w-3.5 h-3.5 text-text/25 mt-0.5 flex-shrink-0" />
+                    <div className="text-xs text-text/35 space-y-0.5">
                       {selected.opening_hours.weekday_text.slice(0, 3).map((line, i) => (
                         <div key={i}>{line}</div>
                       ))}
@@ -162,15 +162,15 @@ export default function GoogleBusinessSearch({ onSelect, onClear, selected }: Pr
             </div>
             <button
               onClick={handleClear}
-              className="text-white/30 hover:text-white/60 transition-colors p-1"
+              className="text-text/25 hover:text-text/50 transition-colors p-1 cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
         </div>
-        <p className="text-center text-white/30 text-xs mt-2">
+        <p className="text-center text-text/30 text-xs mt-2">
           Not your business?{" "}
-          <button onClick={handleClear} className="text-purple-400 hover:text-purple-300 underline">
+          <button onClick={handleClear} className="text-primary hover:text-primary/80 underline cursor-pointer">
             Search again
           </button>
         </p>
@@ -181,45 +181,45 @@ export default function GoogleBusinessSearch({ onSelect, onClear, selected }: Pr
   return (
     <div ref={wrapperRef} className="relative">
       <div className="relative">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text/30" />
         <input
           type="text"
           value={query}
           onChange={(e) => handleInput(e.target.value)}
           onFocus={() => results.length > 0 && setShowResults(true)}
           placeholder="Search for your business on Google..."
-          className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/[0.06] border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 text-lg transition-all"
+          className="form-input pl-12 py-4 text-lg"
         />
         {loading && (
           <div className="absolute right-4 top-1/2 -translate-y-1/2">
-            <div className="w-5 h-5 border-2 border-purple-500/30 border-t-purple-500 rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
           </div>
         )}
       </div>
 
       {loadingDetails && (
-        <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-8 text-center">
-          <div className="w-8 h-8 border-2 border-purple-500/30 border-t-purple-500 rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-white/50 text-sm">Loading business details...</p>
+        <div className="mt-4 rounded-2xl border border-zinc/90 bg-lighter p-8 text-center card-shadow">
+          <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-3" />
+          <p className="text-text/45 text-sm">Loading business details...</p>
         </div>
       )}
 
       {showResults && results.length > 0 && !loadingDetails && (
-        <div className="absolute z-50 w-full mt-2 rounded-xl border border-white/10 bg-[#1a1a2e] backdrop-blur-xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto">
+        <div className="absolute z-50 w-full mt-2 rounded-xl border border-zinc/90 bg-lighter shadow-xl overflow-hidden max-h-80 overflow-y-auto">
           {results.map((result) => (
             <button
               key={result.place_id}
               onClick={() => handleSelect(result)}
-              className="w-full px-4 py-3 text-left hover:bg-white/[0.06] transition-colors border-b border-white/[0.04] last:border-0"
+              className="w-full px-4 py-3 text-left hover:bg-light transition-colors border-b border-border/30 last:border-0 cursor-pointer"
             >
-              <div className="font-medium text-white text-sm">{result.name}</div>
-              <div className="text-white/40 text-xs mt-0.5 flex items-center gap-1">
+              <div className="font-medium text-text-dark text-sm">{result.name}</div>
+              <div className="text-text/40 text-xs mt-0.5 flex items-center gap-1">
                 <MapPin className="w-3 h-3" />
                 {result.formatted_address}
               </div>
               {result.rating && (
-                <div className="text-white/30 text-xs mt-1 flex items-center gap-1">
-                  <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
+                <div className="text-text/30 text-xs mt-1 flex items-center gap-1">
+                  <Star className="w-3 h-3 text-primary fill-primary" />
                   {result.rating} ({result.user_ratings_total} reviews)
                 </div>
               )}
@@ -229,8 +229,8 @@ export default function GoogleBusinessSearch({ onSelect, onClear, selected }: Pr
       )}
 
       {showResults && results.length === 0 && query.length >= 2 && !loading && (
-        <div className="absolute z-50 w-full mt-2 rounded-xl border border-white/10 bg-[#1a1a2e] p-4 text-center">
-          <p className="text-white/40 text-sm">No businesses found. Try a different search.</p>
+        <div className="absolute z-50 w-full mt-2 rounded-xl border border-zinc/90 bg-lighter p-4 text-center shadow-xl">
+          <p className="text-text/40 text-sm">No businesses found. Try a different search.</p>
         </div>
       )}
     </div>

@@ -1,26 +1,190 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ══════════════════════════════════════════════════
+   Theme — matches RevSquared website design system
+   ══════════════════════════════════════════════════ */
+@theme {
+  /* === Colors === */
+  --color-primary: #E48800;
+  --color-gray: #1A1D21;
+  --color-lighter: #fff;
+  --color-zinc: #C6BAAF;
+  --color-body: #FAF9F8;
+  --color-border: #CDCDCD;
+  --color-light: #F3F0EB;
+  --color-dark: #121212;
+  --color-text: #1A1A1A;
+  --color-text-dark: #121212;
+  --color-text-light: #fff;
+
+  /* === Font Families === */
+  --font-primary: var(--font-inter), sans-serif;
+  --font-secondary: var(--font-instrument-serif), serif;
+
+  /* === Font Sizes === */
+  --text-base: 16px;
+  --text-base-sm: 12.8px;
+  --text-h6: 1.239rem;
+  --text-h5: 1.535rem;
+  --text-h4: 1.902rem;
+  --text-h3: 2.357rem;
+  --text-h3-sm: 2.121rem;
+  --text-h2: 2.92rem;
+  --text-h2-sm: 2.628rem;
+  --text-h1: 3.618rem;
+  --text-h1-sm: 3.256rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ══════════════════════════════════════════════════
+   Utilities
+   ══════════════════════════════════════════════════ */
+
+@utility form-input {
+  @apply w-full rounded-lg border-border/70 border bg-lighter px-5 py-4 text-text-dark placeholder:text-text/50 placeholder:text-base focus:border-primary focus:ring-transparent;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility form-label {
+  @apply mb-2 block text-lg font-medium text-text-dark;
+}
+
+@utility corner-squircle {
+  corner-shape: squircle;
+}
+
+@utility card-shadow {
+  box-shadow: 0px 8px 34px 0px #0000000D;
+}
+
+.has-em em {
+  @apply font-secondary italic font-normal;
+}
+
+/* ══════════════════════════════════════════════════
+   Base
+   ══════════════════════════════════════════════════ */
+
+@layer base {
+  html {
+    @apply text-base-sm md:text-base;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-body text-base font-primary font-normal leading-relaxed text-text;
+  }
+
+  body::selection {
+    @apply bg-primary/80 text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-primary font-semibold leading-tight text-text-dark;
+  }
+
+  h1, .h1 { @apply text-h1-sm md:text-h1; }
+  h2, .h2 { @apply text-h2-sm md:text-h2; }
+  h3, .h3 { @apply text-h3-sm md:text-h3; }
+
+  b, strong { @apply font-semibold; }
+  li::marker { @apply text-primary!; }
+}
+
+/* ══════════════════════════════════════════════════
+   Components
+   ══════════════════════════════════════════════════ */
+
+@layer components {
+  .section {
+    @apply py-16 xl:py-20;
+  }
+
+  .container {
+    @apply mx-auto xl:max-w-[1320px] px-4;
+  }
+
+  /* Button system */
+  .btn {
+    @apply inline-block rounded-full border border-transparent px-8 py-3 font-normal text-lg transition-all duration-500 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply border-dark bg-dark text-text-light hover:border-lighter hover:bg-lighter hover:text-text-dark!;
+  }
+
+  .btn-outline-primary {
+    @apply border-dark text-text-dark hover:bg-dark bg-transparent hover:text-text-light;
+  }
+
+  .btn-secondary {
+    @apply border-lighter bg-lighter text-text-dark hover:border-dark hover:bg-dark;
+  }
+
+  /* Badge animations */
+  @keyframes badge-shine {
+    0% { transform: translateX(-100%) skewX(-20deg); }
+    20%, 100% { transform: translateX(250%) skewX(-20deg); }
+  }
+
+  .badge-glass-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .badge-glass-shine::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4) 40%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0.4) 60%,
+      transparent
+    );
+    animation: badge-shine 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Section badge float */
+  .section-badge {
+    display: inline-block;
+    position: relative;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    transform-origin: center;
+    animation: badge-float 3.6s ease-in-out infinite;
+    will-change: transform, filter;
+  }
+
+  @keyframes badge-float {
+    0% { filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+    50% { filter: drop-shadow(0 6px 10px rgba(0,0,0,0.06)); }
+    100% { filter: drop-shadow(0 0 0 rgba(0,0,0,0)); }
+  }
+
+  /* Icon shadow pulse */
+  .icon-shadow {
+    box-shadow: 0 0 8px 0 rgba(228,136,0,0.3);
+    animation: icon-shadow-pulse 2s ease-in-out infinite;
+    will-change: box-shadow;
+  }
+
+  @keyframes icon-shadow-pulse {
+    0% { box-shadow: 0 0 8px 0 rgba(228,136,0,0.25); }
+    50% { box-shadow: 0 0 18px 6px rgba(228,136,0,0.35); }
+    100% { box-shadow: 0 0 8px 0 rgba(228,136,0,0.25); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .icon-shadow { animation: none; }
+    .section-badge { animation: none; }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #FAF9F8; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
