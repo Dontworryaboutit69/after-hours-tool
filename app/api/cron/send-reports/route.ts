@@ -59,6 +59,7 @@ export async function GET(request: Request) {
         const revenueImpact = calculateRevenueImpact({
           industry: check.industry || "other",
           avgCustomerValue: check.avg_customer_value,
+          monthlyCallVolume: check.monthly_call_volume,
           totalReviews,
           missRate: grade.missRate,
         });

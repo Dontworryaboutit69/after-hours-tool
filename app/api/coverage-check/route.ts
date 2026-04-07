@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     const {
       phoneNumber, contactName, contactPhone, email,
       businessName, industry, googlePlaceId, googleBusinessData,
-      avgCustomerValue, hasAnsweringService, answeringServiceCost,
+      avgCustomerValue, monthlyCallVolume, hasAnsweringService, answeringServiceCost,
     } = body;
 
     if (!phoneNumber || !email) {
@@ -133,6 +133,7 @@ export async function POST(request: Request) {
         contact_phone: contactPhone,
         email,
         avg_customer_value: avgCustomerValue,
+        monthly_call_volume: monthlyCallVolume,
         has_answering_service: hasAnsweringService || false,
         answering_service_cost: answeringServiceCost,
         status: "in_progress",

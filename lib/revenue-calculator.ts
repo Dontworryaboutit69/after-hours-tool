@@ -32,13 +32,15 @@ export interface RevenueImpact {
 export function calculateRevenueImpact(params: {
   industry: string;
   avgCustomerValue?: number | null;
+  monthlyCallVolume?: number | null;
   totalReviews?: number;
   missRate: number;
 }): RevenueImpact {
   const benchmark = INDUSTRY_BENCHMARKS[params.industry] || INDUSTRY_BENCHMARKS.other;
   const avgValue = params.avgCustomerValue || benchmark.avgCustomerValue;
-  const reviewCount = params.totalReviews || 50;
-  const estimatedMonthlyCalls = Math.round(reviewCount * benchmark.monthlyCallsPerReview);
+  // Prefer user-provided call volume, fall back to estimate from reviews
+  const estimatedMonthlyCalls = params.monthlyCallVolume
+    || Math.round((params.totalReviews || 50) * benchmark.monthlyCallsPerReview);
   const neverCallBackRate = 0.85;
 
   const missedCallsPerMonth = Math.round(estimatedMonthlyCalls * params.missRate);

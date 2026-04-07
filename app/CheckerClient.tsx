@@ -53,6 +53,7 @@ export default function CheckerClient() {
   const [contactPhone, setContactPhone] = useState("");
   const [email, setEmail] = useState("");
   const [avgCustomerValue, setAvgCustomerValue] = useState("");
+  const [monthlyCallVolume, setMonthlyCallVolume] = useState("");
   const [hasAnsweringService, setHasAnsweringService] = useState<boolean | null>(null);
   const [answeringServiceCost, setAnsweringServiceCost] = useState("");
 
@@ -148,6 +149,7 @@ export default function CheckerClient() {
           googlePlaceId: selectedBusiness.place_id,
           googleBusinessData: selectedBusiness,
           avgCustomerValue: avgCustomerValue ? parseFloat(avgCustomerValue) : null,
+          monthlyCallVolume: monthlyCallVolume ? parseInt(monthlyCallVolume) : null,
           hasAnsweringService: hasAnsweringService || false,
           answeringServiceCost: answeringServiceCost
             ? parseFloat(answeringServiceCost)
@@ -366,6 +368,26 @@ export default function CheckerClient() {
                   </div>
                   <p className="text-text/35 text-sm mt-1.5">
                     Rough estimate — what does a typical job or visit bring in?
+                  </p>
+                </div>
+
+                {/* Monthly call volume */}
+                <div>
+                  <label className="form-label text-base">
+                    How many phone calls does your business get per month?
+                  </label>
+                  <div className="relative">
+                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-text/30" />
+                    <input
+                      type="number"
+                      value={monthlyCallVolume}
+                      onChange={(e) => setMonthlyCallVolume(e.target.value)}
+                      placeholder="200"
+                      className="form-input pl-11"
+                    />
+                  </div>
+                  <p className="text-text/35 text-sm mt-1.5">
+                    Best guess is fine — we use this to estimate your revenue impact.
                   </p>
                 </div>
 
